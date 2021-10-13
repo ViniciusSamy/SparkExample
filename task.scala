@@ -5,7 +5,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.graphx.GraphLoader
 
 //Lendo arestas a partir de um csv ( csv => String )
-val edges_1 = spark.sparkContext.textFile("../../../connections.csv")
+val edges_1 = spark.sparkContext.textFile("gs://dataproc-bucket-1/spark-example/connections.csv")
 //Separando as colunas pelo delimitador ',' ( String => Array[String] )
 val edges_2 = edges_1.map(f=>f.split(','))
 //Descartando Header ( Array[String] => Array[String] )
@@ -15,7 +15,7 @@ val edges : RDD[Edge[Long]] = edges_3.map( arr=> Edge(arr(0).toLong, arr(1).toLo
 
 //Mesmo processo para os vertices
 //... ( csv => String )
-val vertices_1 = spark.sparkContext.textFile("../../../profiles.csv")
+val vertices_1 = spark.sparkContext.textFile("gs://dataproc-bucket-1/spark-example/profiles.csv")
 //... ( String => Array[String] )
 val vertices_2 = vertices_1.map(f=>f.split(','))
 //... ( Array[String] => Array[String] )
